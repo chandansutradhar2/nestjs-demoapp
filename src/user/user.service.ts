@@ -5,7 +5,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
-  
   constructor(
     @Inject('DATABASE_CONNECTION')
     private db: Db,
@@ -19,11 +18,12 @@ export class UserService {
   async findAll() {
     //return `This action returns all user`;
     return await this.db.collection('users').find().toArray();
-
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(name: string) {
+    return await this.db.collection('users').findOne({
+      designation: name,
+    });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

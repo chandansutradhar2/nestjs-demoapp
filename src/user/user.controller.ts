@@ -17,9 +17,10 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  @Post('/find')
+  findOne(@Body() data: any) {
+    console.log(data);
+    return this.userService.findOne(data.name);
   }
 
   @Patch(':id')

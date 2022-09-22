@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { Db, MongoClient } from 'mongodb';
 
 @Module({
+  imports:[],
+  controllers:[],
     providers:[
         {
             provide:'DATABASE_CONNECTION',
@@ -11,7 +13,7 @@ import { Db, MongoClient } from 'mongodb';
                 auth:{
                   username:'npst',
                   password:'Npst@Mongo@2022'
-                }
+                },
               })
               return client.db('testdb');
         
