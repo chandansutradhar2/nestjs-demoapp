@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Request,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -21,8 +29,9 @@ export class AppController {
   }
 
   @Post('/create')
-  createPArkingArea() {
-    return 'createParkignArea invoked';
+  createParkingArea(@Body() body: any) {
+    console.log(body);
+    return body;
   }
 
   // @Delete()
