@@ -10,7 +10,20 @@ export class AppController {
     return 'GetAll invoked';
   }
 
-  // @Post()
+  @Get('/many')
+  getMany() {
+    return 'Get Many invoked';
+  }
+
+  @Get('/parkingareas')
+  getAllParkingArea() {
+    return 'return all parking areas ';
+  }
+
+  @Post('/create')
+  createPArkingArea() {
+    return 'createParkignArea invoked';
+  }
 
   // @Delete()
 
