@@ -7,6 +7,8 @@ import {
   Patch,
   Delete,
 } from '@nestjs/common';
+import { CreateUserDTO } from './dtos/create-user.dto';
+import { UpdateUserDTO } from './dtos/update-user.dto';
 
 @Controller('/user')
 export class UserController {
@@ -36,7 +38,7 @@ export class UserController {
   }
 
   @Post('/add')
-  addUser(@Body() body: any) {
+  addUser(@Body() body: CreateUserDTO) {
     let idx = this.users.findIndex((i) => {
       return i.mobileNo == body.mobileNo;
     });
@@ -56,7 +58,7 @@ export class UserController {
   }
 
   @Patch('/update')
-  updateUser(@Body() user: any) {
+  updateUser(@Body() user: UpdateUserDTO) {
     // console.log(
     //   `deserialized data ${user} data in JSON Format. ${JSON.stringify(user)}`,
     // );
@@ -66,8 +68,12 @@ export class UserController {
     });
 
     if (idx !== -1) {
-      user.id = this.users[idx].id;
-      this.users.splice(idx, 1, user);
+      let u = this.users[idx];
+      u.name = user.name;
+      u.mobileNo = user.mobileNo;
+      u.userType = user.userType;
+
+      this.users.splice(idx, 1, u);
       return 'user updated successfully';
     } else {
       return `no user found with  ${user.mobileNo} as mobile no`;
