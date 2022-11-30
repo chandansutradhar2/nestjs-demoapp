@@ -14,27 +14,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getAll() {
-    return 'GetAll invoked';
+  helloWorld() {
+    return 'parking api working fine';
   }
-
-  @Get('/many')
-  getMany() {
-    return 'Get Many invoked';
-  }
-
-  @Get('/parkingareas')
-  getAllParkingArea() {
-    return 'return all parking areas ';
-  }
-
-  @Post('/create')
-  createParkingArea(@Body() body: any) {
-    console.log(body);
-    return body;
-  }
-
-  // @Delete()
-
-  // @Patch()
 }
