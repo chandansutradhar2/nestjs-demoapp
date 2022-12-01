@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { throws } from 'assert';
 import { CreateUserDTO } from './dtos/create-user.dto';
 import { UpdateUserDTO } from './dtos/update-user.dto';
 
@@ -35,9 +36,16 @@ export class UserService {
   }
 
   getUserById(id: number) {
-    return this.users.find((a) => {
-      return a.id == id;
-    });
+    // return this.users.find((a) => {
+    //   return a.id == id;
+    // });
+
+    try {
+      console.log(id);
+      return this.users[id].name;
+    } catch (error) {
+      throw new NotFoundException();
+    }
   }
 
   updateUser(user: UpdateUserDTO) {

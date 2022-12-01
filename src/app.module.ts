@@ -1,7 +1,9 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { Db, MongoClient } from 'mongodb';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { LoggerMiddleware } from './middlewares/logger.middleware';
+import { TokenValidator } from './middlewares/validator.middleware';
 import { UserModule } from './users/user.module';
 
 @Module({
@@ -9,4 +11,9 @@ import { UserModule } from './users/user.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('user');
+    consumer.apply(TokenValidator).forRoutes('user');
+  }
+}

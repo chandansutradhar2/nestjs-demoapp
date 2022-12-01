@@ -6,6 +6,7 @@ import {
   Query,
   Patch,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CreateUserDTO } from './dtos/create-user.dto';
 import { UpdateUserDTO } from './dtos/update-user.dto';
@@ -30,8 +31,8 @@ export class UserController {
   }
 
   @Get('/byId')
-  findById(@Query('id') id: string) {
-    return this.userSvc.getUserById(parseInt(id));
+  findById(@Query('id', ParseIntPipe) id: number) {
+    return this.userSvc.getUserById(id);
   }
 
   @Patch('/update')
