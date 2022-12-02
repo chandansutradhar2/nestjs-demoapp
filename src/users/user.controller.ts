@@ -30,9 +30,9 @@ export class UserController {
     return this.userSvc.createUser(body);
   }
 
-  @Get('/byId')
-  findById(@Query('id', ParseIntPipe) id: number) {
-    return this.userSvc.getUserById(id);
+  @Get('/findone')
+  findById(@Query() id: string) {
+    return this.userSvc.findOne(id);
   }
 
   @Patch('/update')

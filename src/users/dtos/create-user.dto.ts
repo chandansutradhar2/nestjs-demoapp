@@ -7,10 +7,11 @@ export enum USER_TYPE {
 }
 
 export class CreateUserDTO {
+  username: string;
   @IsNotEmpty()
-  id: number;
+  fullName: string;
   @IsNotEmpty()
-  name: string;
+  password: string;
   @IsEmail()
   email: string;
   @IsEnum(USER_TYPE)

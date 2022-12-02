@@ -1,7 +1,8 @@
 //dto stands for data trasfer object
 export class UpdateUserDTO {
-  id?: number;
-  name: string;
+  fullName: string;
   mobileNo: string;
   userType: string;
+  email: string;
+  password: string;
 }

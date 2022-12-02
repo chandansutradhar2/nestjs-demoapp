@@ -7,16 +7,18 @@ import { UpdateUserDTO } from './dtos/update-user.dto';
 export class UserService {
   users = [
     {
-      id: 1,
-      name: 'chandan',
+      fullName: 'Chandan Naresh',
+      username: 'chandan',
       userType: 'staff',
       mobileNo: '8080811145',
+      password: 'abc123',
     },
     {
-      name: 'naveen',
+      fullName: 'Naveen chand Thakur',
+      username: 'naveen',
       userType: 'admin',
       mobileNo: '8080811146',
-      id: 2,
+      password: 'abc123',
     },
   ];
 
@@ -31,21 +33,15 @@ export class UserService {
       return 'user created succssfully';
     }
   }
+
   getAllUser() {
     return this.users;
   }
 
-  getUserById(id: number) {
-    // return this.users.find((a) => {
-    //   return a.id == id;
-    // });
-
-    try {
-      console.log(id);
-      return this.users[id].name;
-    } catch (error) {
-      throw new NotFoundException();
-    }
+  findOne(username: string) {
+    return this.users.find((a) => {
+      return a.username == username;
+    });
   }
 
   updateUser(user: UpdateUserDTO) {
@@ -55,7 +51,8 @@ export class UserService {
 
     if (idx !== -1) {
       let u = this.users[idx];
-      u.name = user.name;
+      u.fullName = user.fullName;
+      u.password = user.password;
       u.mobileNo = user.mobileNo;
       u.userType = user.userType;
 
